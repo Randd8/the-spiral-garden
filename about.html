@@ -90,21 +90,6 @@
             width: 100%;
         }
 
-        /* Hero Section with Header Image */
-        .about-hero {
-            background: var(--color-bg-alt);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .about-hero img {
-            max-width: 800px;
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
         /* Content Section */
         .about-content {
             max-width: 800px;
@@ -127,6 +112,19 @@
             color: var(--color-text-light);
             font-size: 1.05rem;
             line-height: 1.9;
+        }
+
+        .about-logo {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-bg-alt);
+        }
+
+        .about-logo img {
+            height: 60px;
+            width: auto;
+            opacity: 0.7;
         }
 
         /* Footer */
@@ -209,10 +207,6 @@
         </div>
     </header>
 
-    <section class="about-hero">
-        <img src="images/about-header.png" alt="The Spiral Garden - Copper garden tools and accessories">
-    </section>
-
     <section class="about-content">
         <h1>What is The Spiral Garden?</h1>
         
@@ -225,6 +219,10 @@
         <p>Whether you're cultivating vegetables, creating a pollinator sanctuary, designing a peaceful outdoor retreat, or simply exploring new ideas in the garden, our goal is to provide thoughtfully crafted copper accessories that bring both function and inspiration to your growing space.</p>
         
         <p>The garden is a place of healing, relaxation, observation, discovery, and possibility. We're honored to be part of that journey with you.</p>
+        
+        <div class="about-logo">
+            <img src="images/logo.jpg" alt="The Spiral Garden">
+        </div>
     </section>
 
     <footer id="contact">
