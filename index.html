@@ -3,69 +3,767 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Spiral Garden</title>
+    <title>The Spiral Garden | A Digital Sanctuary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-primary: #b29a96;
+            --color-primary-dark: #9a857f;
+            --color-accent: #8b7355;
+            --color-text: #3d3d3d;
+            --color-text-light: #666;
+            --color-bg: #faf9f7;
+            --color-bg-alt: #f5f3f0;
+            --color-white: #ffffff;
+            --font-heading: 'Cinzel', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+            --radius: 50px;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            min-height: 100vh;
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-bg);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Header */
+        header {
+            background: var(--color-white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            font-family: 'Georgia', serif;
-            color: #e8e8e8;
         }
-        .spiral {
-            width: 200px;
-            height: 200px;
-            border: 3px solid #e94560;
-            border-radius: 50%;
+
+        .logo {
+            display: block;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        footer .logo img {
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        nav ul {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: spin 20s linear infinite;
+            list-style: none;
+            gap: 2.5rem;
         }
-        .spiral::before {
-            content: '';
-            width: 150px;
-            height: 150px;
-            border: 2px solid #533483;
-            border-radius: 50%;
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 0.25rem;
         }
-        .spiral::after {
+
+        nav a::after {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 100px;
-            border: 2px solid #e94560;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-image-bar {
+            width: 100%;
+            background: #9CA597;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .carousel {
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .carousel-slide {
+            width: 100%;
+            flex: 0 0 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 357px;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+
+        .carousel-dot.active {
+            background: rgba(255,255,255,0.9);
         }
-        h1 {
-            margin-top: 2rem;
-            font-size: 2.5rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: #e94560;
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            z-index: 1;
+            max-width: 560px;
+            padding: 2rem 1rem;
         }
-        p {
-            margin-top: 1rem;
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: var(--color-white);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+
+        .btn:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border-color: var(--color-text);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--color-text);
+            color: var(--color-white);
+        }
+
+        /* Welcome Section */
+        .welcome {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: var(--color-white);
+        }
+
+        .welcome-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .welcome h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .welcome p {
+            color: var(--color-text-light);
             font-size: 1.1rem;
-            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        /* Collection Section */
+.collection-section {
+  padding: 2rem 1rem;
+  background: var(--color-white);
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+}
+
+.grid--uniform {
+  justify-content: center;
+}
+
+.grid__item {
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+
+.medium-up--one-third {
+  width: 33.333%;
+  max-width: 320px;
+}
+
+.small--one-third {
+  width: 35%;
+}
+
+.small--two-thirds {
+  width: 65%;
+}
+
+.article__grid-image {
+  display: block;
+  text-decoration: none;
+}
+
+.image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #f5f3f0;
+}
+
+.grid__image-ratio {
+  position: relative;
+  padding-bottom: 75%;
+  height: 0;
+}
+
+.grid__image-ratio img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.article__grid-meta {
+  padding: 10px 0 0 10px;
+}
+
+.article__title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+
+.article__title:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .medium-up--one-third {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+        /* Product Section */
+        .product-section {
+            padding: 3rem 2rem;
+            background: var(--color-bg-alt);
+        }
+
+        .product-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .product-image {
+            position: relative;
+            background: var(--color-white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .product-info h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--color-primary-dark);
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+
+        .product-description {
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .product-features li {
+            padding: 0.5rem 0;
+            color: var(--color-text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .product-features li::before {
+            content: '—';
+            color: var(--color-primary);
+        }
+
+        .product-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--color-text);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary);
+        }
+
+        @media (max-width: 1000px) {
+            .product-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Details/Accordion Section */
+        .details-section {
+            padding: 3rem 2rem;
+            background: var(--color-bg);
+        }
+
+        .details-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .details-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .details-header h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+        }
+
+        details {
+            background: var(--color-white);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 0.75rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            list-style: none;
+            transition: background 0.2s ease;
+        }
+
+        summary:hover {
+            background: var(--color-bg-alt);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        details[open] summary {
+            background: var(--color-bg-alt);
+        }
+
+        .details-content {
+            padding: 0 2rem 0.75rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-text);
+            color: var(--color-white);
+            padding: 2rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        footer .logo {
+            color: var(--color-white);
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-nav a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-white);
+        }
+
+        .copyright {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="spiral"></div>
-    <h1>The Spiral Garden</h1>
-    <p>A digital sanctuary</p>
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo"><img src="images/logo.jpg" alt="The Spiral Garden"></a>
+            <nav>
+                <ul>
+                    <li><a href="#explore">Explore</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image-bar">
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><img src="images/hero-garden.jpg" alt="Sunlit garden with seedlings"></div>
+                    <div class="carousel-slide"><img src="images/garden2.jpg" alt="Patio garden with potted flowers"></div>
+                    <div class="carousel-slide"><img src="images/garden3.jpg" alt="Garden scene"></div>
+                    <div class="carousel-slide"><img src="images/garden4.jpg" alt="Garden view"></div>
+                </div>
+                <div class="carousel-nav">
+                    <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(2)"></span>
+                    <span class="carousel-dot" onclick="goToSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Nature provides for our health and well-being, give a little toward a nurtured garden, gain much more in return.</p>
+            <a href="#explore" class="btn">Discover</a>
+            <a href="#about" class="btn btn-outline">Our Story</a>
+        </div>
+    </section>
+
+    <section class="welcome" id="about">
+        <div class="welcome-inner">
+            <h2>Welcome to the Garden</h2>
+            <p>Water is not just hydration. It provides for life itself. It has memory. It reacts to our thoughts and intentions. It is the medium through which life energy flows.</p>
+            <p>Our designs take inspiration from these naturally occurring patterns, by introducing rotational flow and aeration we explore the same swirling patterns found in streams, whirlpools, and waterfalls, forms long appreciated for their connection to naturally energized water. Rather than making definitive health or performance claims, we simply invite users to explore the sensation and philosophy behind the structured flow for themselves.</p>
+        </div>
+    </section>
+
+    <section class="collection-section" id="collections">
+  <div class="grid grid--uniform">
+    
+    <div class="grid__item medium-up--one-third">
+      <div class="grid">
+        <div class="grid__item small--one-third">
+          <a href="#" class="article__grid-image" aria-label="Garden">
+            <div class="image-wrap">
+              <div class="grid__image-ratio grid__image-ratio--landscape">
+                <img src="images/card-main.jpg" alt="Garden">
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="grid__item small--two-thirds">
+          <div class="article__grid-meta">
+            <a href="#" class="article__title">GARDEN</a>
+            <a href="#" class="btn">EXPLORE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid__item medium-up--one-third">
+      <div class="grid">
+        <div class="grid__item small--one-third">
+          <a href="#" class="article__grid-image" aria-label="Planters">
+            <div class="image-wrap">
+              <div class="grid__image-ratio grid__image-ratio--landscape">
+                <img src="images/card-main.jpg" alt="Planters">
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="grid__item small--two-thirds">
+          <div class="article__grid-meta">
+            <a href="#" class="article__title">PLANTERS</a>
+            <a href="#" class="btn">EXPLORE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid__item medium-up--one-third">
+      <div class="grid">
+        <div class="grid__item small--one-third">
+          <a href="#" class="article__grid-image" aria-label="Art">
+            <div class="image-wrap">
+              <div class="grid__image-ratio grid__image-ratio--landscape">
+                <img src="images/card-main.jpg" alt="Art">
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="grid__item small--two-thirds">
+          <div class="article__grid-meta">
+            <a href="#" class="article__title">ART</a>
+            <a href="#" class="btn">EXPLORE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+    <section class="product-section" id="product">
+        <div class="product-inner">
+            <div class="product-image">
+                <img src="images/shower-head.png" alt="Copper Shower Head - Industrial minimalist wall-mounted fixture">
+            </div>
+            <div class="product-info">
+                <h2>Shower Head</h2>
+                <p class="product-price">$340</p>
+                <p class="product-description">An industrial copper-toned wall-mounted shower fixture that brings the warmth of aged metal into your daily ritual. The curved pipe and dual-nozzle design create a statement piece that transforms an ordinary space into a sanctuary.</p>
+                <ul class="product-features">
+                    <li>Copper-toned finish with natural patina</li>
+                    <li>Dual downward nozzles for even water flow</li>
+                    <li>Wall-mounted industrial design</li>
+                    <li>Minimalist aesthetic, maximum impact</li>
+                </ul>
+                <div class="product-cta">
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="details-section" id="explore">
+        <div class="details-inner">
+            <div class="details-header">
+                <h2>Frequently Asked</h2>
+            </div>
+            
+            <details>
+                <summary>What is The Spiral Garden?</summary>
+                <div class="details-content">
+                    <p>The Spiral Garden is a digital sanctuary and creative space dedicated to the exploration of sacred geometry, natural patterns, and mindful living. Inspired by the spiral 1 one of nature's most ancient and universal symbols 1 we curate objects, stories, and experiences that bring the contemplative beauty of the natural world into daily life.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>How do I explore the collections?</summary>
+                <div class="details-content">
+                    <p>Each collection represents a different aspect of the spiral's journey. Begin with the Spiral Path for foundational pieces, move through Golden Ratio for geometric harmony, and discover Seed & Bloom for objects that celebrate growth and transformation. Every piece is thoughtfully selected to inspire presence and connection.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Do you ship internationally?</summary>
+                <div class="details-content">
+                    <p>Yes, we ship our curated collection worldwide. Each item is carefully packaged to honor both the object and its journey to you. Shipping costs and delivery times vary by location 1 simply add items to your cart to see options for your region.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary>Can I visit the physical garden?</summary>
+                <div class="details-content">
+                    <p>The Spiral Garden exists primarily as a digital sanctuary, though we occasionally host gatherings and workshops in select locations. Join our newsletter to be notified of upcoming events, or follow our journal for virtual tours and seasonal reflections.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-inner">
+            <a href="#" class="logo"><img src="images/logo.jpg" alt="The Spiral Garden"></a>
+            <nav class="footer-nav">
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Newsletter</a>
+                <a href="#">Contact</a>
+            </nav>
+            <p class="copyright">&copy; 2026 The Spiral Garden. Cultivated with care.</p>
+        </div>
+    </footer>
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const track = document.getElementById('carouselTrack');
+        const totalSlides = slides.length;
+
+        function goToSlide(index) {
+            currentSlide = index;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            goToSlide((currentSlide + 1) % totalSlides);
+        }
+
+        setInterval(nextSlide, 8000);
+    </script>
 </body>
 </html>
