@@ -487,6 +487,29 @@
             display: none;
         }
 
+        .faq-link {
+            background: var(--color-white);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .faq-link a {
+            display: block;
+            padding: 0.75rem 2rem;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            color: var(--color-text);
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .faq-link a:hover {
+            background: var(--color-bg-alt);
+        }
+
         summary::after {
             content: '+';
             font-size: 1.5rem;
@@ -684,12 +707,9 @@
                 <h2>Frequently Asked</h2>
             </div>
             
-            <details>
-                <summary>What is The Spiral Garden?</summary>
-                <div class="details-content">
-                    <p>The Spiral Garden is a digital sanctuary and creative space dedicated to the exploration of sacred geometry, natural patterns, and mindful living. Inspired by the spiral 1 one of nature's most ancient and universal symbols 1 we curate objects, stories, and experiences that bring the contemplative beauty of the natural world into daily life.</p>
-                </div>
-            </details>
+            <div class="faq-link">
+                <a href="about.html">What is The Spiral Garden?</a>
+            </div>
 
             <details>
                 <summary>How do I explore the collections?</summary>
