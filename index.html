@@ -433,6 +433,12 @@
             .product-inner {
                 grid-template-columns: 1fr 1fr;
             }
+            .product-inner.reverse {
+                direction: rtl;
+            }
+            .product-inner.reverse > * {
+                direction: ltr;
+            }
         }
 
         /* Details/Accordion Section */
@@ -697,6 +703,29 @@
                     <a href="#" class="btn btn-primary">Add to Cart</a>
                     <a href="#" class="btn btn-outline">Learn More</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section" id="sprinkler">
+        <div class="product-inner reverse">
+            <div class="product-info">
+                <h2>Sprinkler</h2>
+                <p class="product-price">$280</p>
+                <p class="product-description">A copper garden sprinkler designed to bring both function and beauty to your outdoor space. The rotating head creates an even water distribution pattern while the copper construction develops a rich patina over time.</p>
+                <ul class="product-features">
+                    <li>360-degree rotating spray pattern</li>
+                    <li>Copper construction with natural aging</li>
+                    <li>Adjustable water flow control</li>
+                    <li>Ground stake or tripod mount compatible</li>
+                </ul>
+                <div class="product-cta">
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="product-image">
+                <img src="images/shower-head.png" alt="Copper Garden Sprinkler - Rotating water distribution">
             </div>
         </div>
     </section>
